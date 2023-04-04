@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel='stylesheet' href='/stylesheets/publika.css'>
+    <title>PREDAVANJE</title>
+</head>
+<body style="background-image: url(<%=slike.url_slike%>);background-size: cover;">
+   <div class="col-md-8 col-xl-6 chat">
+       <div class="container">
+           <section class="titlesection">
+               <nav>
+                   <ul class="subnav">
+                       <li><a href="/publika/<%=kod%>/ocjena" class="btn btn-info">OCIJENI PREDAVANJE</a></li>
+                       <li><a href="/" class="btn btn-info">Napusti predavanje</a></li>
+                   </ul>
+               </nav>
+           </section>
+       </div>
+       <div class="card">
+           <div class="card-header msg_head">
+               <div class="d-flex bd-highlight">
+                   <div class="user_info">
+                       <span>Dobro došli!</span>
+                   </div>
+               </div>
+               <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+               <div class="action_menu">
+               </div>
+           </div>
+           <div class="card-body msg_card_body">
+                   <%for (let i =0; i<pitanje.length; i++) {%>
+                   <div class="d-flex justify-content-start mb-4">
+                           <div class="msg_cotainer">
+                               <%= pitanje[i].sadrzaj_pitanja%>
+                           </div>
+                       <a href="/publika/<%=kod%>/lajkaj/<%=pitanje[i].id_pitanja%>"><i class="fa fa-heart" style="color: #cc0000; margin-top: 10px; font-size: 20px; margin-left: 5px;" aria-hidden="true"></i></a><p style="margin-top: 20px;"><%=pitanje[i].lajk%><p><!--ovo mi je post ruta za lajkove-->
+                    </div>
+                   <%}%>
+               </div>
+           <div class="card-footer">
+               <div class="input-group">
+                   <div class="input-group-append">
+                       <form method="post" action="/publika/<%=kod%>/postaviPitanje" class="input-group-append">
+                           <label for="sadrzaj">
+                               <textarea name="sadrzaj" id="sadrzaj" class="form-control type_msg" placeholder="Postavite pitanje..."></textarea>
+                           </label>
+                           <span><button type="submit" class="input-group-text send_btn">Pošalji</button></span>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+</body>
+</html>

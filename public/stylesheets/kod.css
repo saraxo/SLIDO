@@ -1,0 +1,9 @@
+body{
+    font: 14px "Lucida Console";
+    background-color: #E9CCED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+}

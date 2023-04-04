@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+      <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel='stylesheet' href='/stylesheets/style.css'>
+      <link rel='stylesheet' href='/stylesheets/forma2.css'>
+  </head>
+  <body>
+  <%-include('header.ejs')%>
+  <div class="container prvi">
+    <div class="row">
+      <p style="margin-top:30px; font-weight: bold;font-size: 20px; ">Upravljaj predavanjima</p>
+      <div class="#" id="tabela">
+        <table class="table table-responsive-lg uredi-korisnike" id="tabelPredavanja">
+          <thead>
+          <tr>
+            <th scope="col">ID predavanja</th>
+            <th scope="col">Kod</th>
+            <th scope="col">Naziv predavanja</th>
+            <th scope="col">ID korisnika</th>
+            <th scope="col">Datum predavanja</th>
+            <th scope="col">Vrijeme predavanja</th>
+            <th scope="col"> </th>
+            <th scope="col"> </th>
+          </tr>
+          </thead>
+          <tbody>
+          <%for (let i =0; i<predavanja.length; i++) {%>
+            <tr>
+              <td><%= predavanja[i].id_predavanja%></td>
+              <td><%= predavanja[i].kod%></td>
+              <td><%= predavanja[i].naziv%></td>
+              <td><%= predavanja[i].id_korisnika%></td>
+              <td><%=(new Date(predavanja[i].dan_predavanja)).toLocaleString().slice(0, 10)%></td>
+              <td><%= predavanja[i].vrijeme_predavanja%></td>
+              <td><a href="/admin/urediPredavanja/obrisi/<%=predavanja[i].id_predavanja%>" class="btn btn-danger">OBRIŠI</a></td>
+              <td>
+                <button onclick="otvoriFormu('<%=predavanja[i].id_predavanja%>')" class="btn btn-success">UREDI</button>
+                <div class="forma-dogadjaj" id="kreirajPredavanje<%=predavanja[i].id_predavanja%>">
+                  <form method="post" action="/admin/urediPredavanja/<%=predavanja[i].id_predavanja%>" class="login-box" enctype="multipart/form-data" autocomplete="on">
+                    <div class="title">
+                      <h1 id="naslov">UREDI PREDAVANJE</h1>
+                    </div>
+                    <div class="form-group">
+                      <label for="kod">Kod</label>
+                      <input type="text" class="form-control" id="kod" name = 'kod' placeholder="Unesite kod za predavanje">
+                    </div>
+                    <div class="form-group">
+                      <label for="naziv">Naziv predavanja</label>
+                      <input type="text" class="form-control" id="naziv" name = 'naziv' placeholder="Unesite naziv predavanja">
+                    </div>
+                    <div class="form-group">
+                      <label for="id2">
+                        <input type="hidden" class="form-control" name = 'id2' value="<%=predavanja[i].id_korisnika%>" placeholder="<%=predavanja[i].id_korisnika%>" readonly>
+                      </label>
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="dan">Kada?</label>
+                        <input type="date" class="form-control" id="dan" name= 'dan'>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="vrijeme">U koliko sati?</label>
+                        <input type="time" class="form-control" id="vrijeme" name="vrijeme" placeholder="U koliko sati želite da bude Vaše predavanje?">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="ponavljanje">Predavanje će se ponavljati sedmično sve do...</label>
+                      <input type="date" class="form-control" id="ponavljanje" name="ponavljanje">
+                    </div>
+                    <div class="form-group">
+                      <label for="id">
+                        <input type="hidden" class="form-control" name = 'id' value="<%=predavanja[i].id_predavanja%>" placeholder="<%=predavanja[i].id_predavanja%>" readonly>
+                      </label>
+                    </div>
+                    <!--<div class="form-group">
+                      <label for="image">Cover</label>
+                      <input type="file" class="form-control" id="image" name="image">
+                    </div>-->
+                    <button type="submit" class="btn btn-success">Kreiraj predavanje</button>
+                    <button type="button" class="btn btn-danger" onclick="closeForma('<%=predavanja[i].id_predavanja%>')">Zatvori</button>
+                  </form>
+                </div>
+                <script>
+                  function otvoriFormu(x) {
+                    document.getElementById("kreirajPredavanje"+x).style.display = "block";
+                  }
+                  function closeForma(x) {
+                    document.getElementById("kreirajPredavanje"+x).style.display = "none";
+                  }
+                </script>
+              </td>
+            </tr>
+          <%}%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

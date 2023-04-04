@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+      <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <link rel='stylesheet' href='/stylesheets/style.css'>
+      <link rel='stylesheet' href='/stylesheets/forma2.css'>
+
+  </head>
+  <body>
+  <%-include('header.ejs')%>
+  <main id="pocetna-admin">
+      <div class="container prvi">
+          <div class="row">
+              <p style="margin-top:30px; font-weight: bold;font-size: 20px; ">Upravljaj korisnicima</p>
+              <div class="#" id="tabela">
+              <table class="table table-responsive-lg uredi-korisnike" id="tabelaKorisnika">
+                  <thead>
+                  <tr>
+                      <th scope="col">ID korisnika</th>
+                      <th scope="col">Ime korisnika</th>
+                      <th scope="col">Prezime korisnika</th>
+                      <th scope="col">E-mail</th>
+                      <th scope="col">Tip korisnika</th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                      <th scope="col"></th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <%for (let i =0; i<korisnik.length; i++) {%>
+                      <tr>
+                          <td><%= korisnik[i].id_korisnika%></td>
+                          <td><%= korisnik[i].ime%></td>
+                          <td><%= korisnik[i].prezime%></td>
+                          <td><%= korisnik[i].email%></td>
+                          <td><%= korisnik[i].tip_korisnika%></td>
+                          <td>
+                              <div class="openBtn">
+                                  <button class="btn btn-success" onclick="openForm('<%=korisnik[i].id_korisnika%>')">Uredi</button>
+                              </div>
+                              <div class="loginPopup">
+                                  <div class="formPopup" id="popupForm<%=korisnik[i].id_korisnika%>">
+                                      <form action="/admin/urediKorisnike/<%=korisnik[i].id_korisnika%>/uredi" method="post" class="formContainer">
+                                          <h2>UREDI KORISNIKA</h2>
+                                          <label for="ime"></label>
+                                          <input type="text" id="ime" placeholder="Promijenite ime korisnika" name="ime" required>
+                                          <label for="prezime"></label>
+                                          <input type="text" id="prezime" placeholder="Promijenite prezime korisnika" name="prezime" required>
+                                          <label for="email"></label>
+                                          <input type="text" id="email" placeholder="Promijenite email korisnika" name="email" required>
+                                          <label for="id">
+                                              <input type="text" name="id" value="<%=korisnik[i].id_korisnika%>" readonly>
+                                          </label>
+                                          <button type="submit" class="btn btn-success">Ažuriraj podatke!</button>
+                                          <button type="button" class="btn cancel" onclick="closeForm('<%=korisnik[i].id_korisnika%>')">Zatvori</button>
+                                      </form>
+                                  </div>
+                              </div>
+                              <script>
+                                  function openForm(x) {
+                                      document.getElementById("popupForm"+x).style.display = "block";
+                                  }
+                                  function closeForm(x) {
+                                      document.getElementById("popupForm"+x).style.display = "none";
+                                  }
+                              </script>
+                          </td>
+                          <td><a href="/admin/obrisi/<%=korisnik[i].id_korisnika%>" class="btn btn-danger delete-button">Obriši</a></td>
+                          <td>
+                              <div class="openBtn">
+                                  <button class="btn btn-outline-danger" onclick="openBlok('<%=korisnik[i].id_korisnika%>')">Blokiraj</button>
+                              </div>
+                              <div class="loginPopup">
+                                  <div class="formPopup" id="blokiranje<%=korisnik[i].id_korisnika%>">
+                                      <form class="formContainer" method="post" action="/admin/urediKorisnike/<%=korisnik[i].id_korisnika%>/blok">
+                                          <h2>BLOKIRAJ KORISNIKA!</h2>
+                                          <label for="id">
+                                              <input type="hidden" value="<%=korisnik[i].id_korisnika%>" placeholder="<%=korisnik[i].id_korisnika%>">
+                                          </label>
+                                          <br>
+                                          <label for="broj" class="label-blok">Na koliko dana ga blokirate?</label>
+                                          <input type="number" id="broj" name="broj" >
+                                          <br>
+                                          <label for="datum">
+                                              <input type="date" id="datum" name="datum">
+                                          </label>
+                                          <button type="submit" class="btn btn-success">BLOKIRAJ</button>
+                                          <button type="button" class="btn cancel" onclick="closeBlok('<%=korisnik[i].id_korisnika%>')">Zatvori</button>
+                                      </form>
+                                  </div>
+                              </div>
+                              <script>
+                                  function openBlok(x) {
+                                      document.getElementById("blokiranje"+x).style.display = "block";
+                                  }
+                                  function closeBlok(x) {
+                                      document.getElementById("blokiranje"+x).style.display = "none";
+                                  }
+                              </script>
+                          </td>
+                      </tr>
+                  <%}%>
+                  </tbody>
+              </table>
+          </div>
+      </div>
+          <div class="line"></div>
+          <br>
+          <br>
+      <h1>Dodaj predavača</h1>
+          <br>
+      <div class="row">
+          <form method="post" action="/admin/urediKorisnike" class="login-box-2" autocomplete="on" >
+              <div class="input-box-2">
+                  <input type="text" name="ime" required class="input" id="ime" placeholder="Unesite ime korisnika" formtarget="_blank">
+                  <label for="ime"></label>
+              </div>
+              <div class="input-box-2">
+                  <input type="text" name="prezime" required class="input" id="prezime" placeholder="Unesite prezime korisnika">
+                  <label for="prezime"></label>
+              </div>
+              <div class="input-box-2">
+                  <input type="text" name="email" required class="input" id="email" placeholder="Unesite e-mail korisnika">
+                  <label for="email"></label>
+              </div>
+              <div class="input-box-2">
+                  <input type="password" name="sifra" required class="input pass-input" id="sifra" placeholder="Unesite sifru korisnika">
+                  <label for="sifra"></label>
+              </div>
+              <div class="input-box-2">
+                  <input type="text" name="tip_korisnika" required class="input pass-input" id="tip_korisnika" value="predavac" readonly>
+                  <label for="tip_korisnika"></label>
+              </div>
+              <button type="submit" onclick="dodajNovogKorisnika()">Kreiraj račun!</button>
+          </form>
+      </div>
+          <div>
+              <p id="poruka_uspjeh">USPJEŠNO STE DODALI NOVOG PREDAVAČA</p>
+          </div>
+  <script>
+      function openPopUp(){
+          document.getElementById("poruka_uspjeh").style.display = "block";
+      }
+  </script>
+      </div>
+
+  </main>
+  </body>
+</html>

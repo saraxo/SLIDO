@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/predavac.css'>
+    <link rel="stylesheet" href="/stylesheets/kod.css">
+</head>
+<body>
+<form method="post" action="/predavac/<%=id%>/kod" class="login-box" autocomplete="on">
+    <div class="title">
+        <h1 id="naslov">POŠALJI KOD</h1>
+    </div>
+    <div class="input-box">
+        <input type="text" name="kod" required class="input" id="kod" placeholder="#Unesite kod za predavanje">
+        <label for="kod"></label>
+    </div>
+    <button type="submit">POŠALJI!</button>
+</form>
+</body>
+</html>

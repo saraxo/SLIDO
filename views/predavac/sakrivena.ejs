@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <script src="https://kit.fontawesome.com/82f797382f.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel='stylesheet' href='/stylesheets/predavac.css'>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #E9CCED; border-bottom: 2px gray solid;">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <button class="dugme"><a class="nav-link" href="/predavac/<%=korisnik[0].id_korisnika%>">Početna stranica</a></button>
+                </li>
+                <li class="nav-item">
+                    <button class="dugme"><a class="nav-link" href="/predavac/<%=korisnik[0].id_korisnika%>/predavanja">Lista predavanja</a></button>
+                </li>
+                <li class="nav-item">
+                    <button class="dugme"><a class="nav-link" href="/predavac/<%=korisnik[0].id_korisnika%>/kod">Pošalji kod</a></button>
+                </li>
+                <li class="nav-item">
+                    <button class="dugme"><a class="nav-link" href="/predavac/<%=korisnik[0].id_korisnika%>/mail">E-mail opcije</a></button>
+                </li>
+                <li class="nav-item">
+                    <button class="dugme"><a class="nav-link" href="/predavac/<%=korisnik[0].id_korisnika%>/odjavi">Odjavi se</a></button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row okvir-predavanje">
+        <h1>LISTA SAKRIVENIH PITANJA</h1>
+        <br>
+        <br>
+        <div class="table-responsive-lg" id="tabelaPr">
+            <table class="table lista-pitanja-sakrivenih" id="tabelaPitanja">
+                <thead>
+                <tr>
+                    <th scope="col">Pitanje</th>
+                    <th scope="col">Odgovori</th>
+                    <th scope="col">Obriši</th>
+                </tr>
+                </thead>
+                <tbody>
+                <%for (let i =0; i<pitanje.length; i++) {%>
+                    <tr>
+                        <td class="sadrzaj-pitanja"><%= pitanje[i].sadrzaj_pitanja%></td>
+                        <td><a href= "<%= url.format({pathname: '/predavac/'+ korisnik[0].id_korisnika + '/predavanja/' + predavanja[0].id_predavanja + '/sakrivena/'+pitanje[i].id_pitanja})%>"  class="btn btn-success" id="odgovori-dugme">Odgovori</a></td>
+                        <td>Obriši</td>
+                    </tr>
+                <%}%>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

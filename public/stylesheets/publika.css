@@ -1,0 +1,264 @@
+body{
+    font: 14px "Lucida Console";
+    background-color: #E9CCED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.login-box {
+    background-color: floralwhite;
+    padding: 50px;
+    min-width: 500px;
+    max-width: 700px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.login-box .title {
+    font-size: 10px;
+    text-align: center;
+    padding: 15px 0;
+}
+#naslov{
+    font-size: 30px;
+}
+.login-box .input-box {
+    position: relative;
+    margin-bottom: 15px;
+}
+.login-box .input-box .input {
+    border: none;
+    border-bottom: 1px solid #efefef;
+    background-color: white;
+    outline: none;
+    width: 100%;
+    padding: 15px 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-size: 16px;
+    /*background-color: #ececec;*/
+    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+}
+.login-box .input-box label {
+    position: absolute;
+    top: 20px;
+    left: 5px;
+    padding: 14px 5px;
+    display: block;
+    pointer-events: none;
+    transition: 0.2s;
+}
+.login-box button[type="submit"] {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px 0;
+    font-size: 16px;
+    color: black;
+    background: #FFCC98;
+    margin-top: 30px;
+    cursor:pointer;
+}
+.login-box .auth-action {
+    display: flex;
+    justify-content: space-between;
+}
+.login-box .auth-action a {
+    display: inline-block;
+    padding: 15px 0;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
+}
+.titlesection {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.titlesection a{
+    color: black;
+    text-decoration: none;
+}
+.subnav {
+    display: flex;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+li {
+    margin: 0 10px;
+    text-decoration: none;
+    list-style: none;
+}
+li a{
+    border-radius: 10px;
+}
+.chat {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.card {
+    height: 500px;
+    border-radius: 15px;
+    background-color: #EDECEB;
+}
+
+.contacts_body {
+    padding: 0.75rem 0 !important;
+    overflow-y: auto;
+    white-space: nowrap;
+}
+
+.msg_card_body {
+    overflow-y: auto;
+}
+
+.card-header {
+    border-radius: 15px 15px 0 0 !important;
+    border-bottom: 0 !important;
+}
+
+.card-footer {
+    border-radius: 0 0 15px 15px !important;
+    border-top: 0 !important;
+}
+
+.container {
+    align-content: center;
+}
+
+.type_msg {
+    background-color: #B4BCC2;
+    border: 0 !important;
+    color: black !important;
+    height: 60px !important;
+    overflow-y: auto;
+    width: 200% !important;
+    float: left;
+}
+
+.send_btn {
+    border-radius: 15px 15px 15px 15px !important;
+    background-color: #B4BCC2;
+    border: 0 !important;
+    color: black !important;
+    cursor: pointer;
+    float: left;
+    padding: 15px;
+    margin-left: 270% !important;
+}
+
+.user_info {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 15px;
+}
+
+.user_info span {
+    font-size: 25px;
+    color: black;
+}
+
+.msg_cotainer {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 10px;
+    border-radius: 10px;
+    background-color: #D6B8E6;
+    padding: 15px;
+    position: relative;
+}
+
+.msg_head {
+    position: relative;
+    background-color: #B4BCC2;
+}
+
+#action_menu_btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.action_menu {
+    z-index: 1;
+    position: absolute;
+    padding: 15px 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border-radius: 15px;
+    top: 30px;
+    right: 15px;
+    display: none;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+@media(max-width: 1200px) {
+    .contacts_card {
+        margin-bottom: 15px !important;
+    }
+    .type_msg {
+        width: 120% !important;
+    }
+    .send_btn {
+        border-radius: 15px 15px 15px 15px !important;
+        background-color: #B4BCC2;
+        border: 0 !important;
+        color: black !important;
+        cursor: pointer;
+        float: left;
+        padding: 15px;
+        margin-left: 50% !important;
+    }
+
+}
+.ocjeni-predavanje{
+    background-color: floralwhite;
+
+    padding: 50px;
+    min-width: 500px;
+    max-width: 700px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+
+.ocjena-dugme{
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    padding: 15px 0;
+    font-size: 16px;
+    color: black;
+    background: #FFCC98;
+    margin-top: 30px;
+    cursor:pointer;
+}
+
